@@ -1,7 +1,12 @@
 #!/usr/bin/python3
 if __name__ == "__main__":
     import sys
-    sum = 0
-    for i in range(len(sys.argv) - 1):
-        sum += sys.argv[i + 1]
-    print(sum)
+    total_sum = 0
+
+    for i in range(1, len(sys.argv)):
+        try:
+            total_sum += int(sys.argv[i])
+        except ValueError:
+            print("Error: Argument {} is not a valid integer".format(i))
+
+    print(total_sum)
