@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-__import__('os').write(1, b"#pythoniscool\n".decode('utf-8'))
+import esay_print
