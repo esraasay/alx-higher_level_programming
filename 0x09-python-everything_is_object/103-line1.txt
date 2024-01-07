@@ -1,0 +1,5 @@
+a = 1
+b = 1
+
+print(id(a))  # Print the identity of the object referenced by 'a'
+print(id(b))  # Print the identity of the object referenced by 'b'
