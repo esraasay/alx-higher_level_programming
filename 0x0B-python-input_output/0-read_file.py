@@ -1,8 +1,8 @@
 #!/usr/bin/python3
+"""definding read_filr function"""
+
+
 def read_file(filename=""):
-    try:
-        with open(filename, 'r', encoding='utf-8') as file:
-            content = file.read()
-            print(content)
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    """Read filename with utf-8"""
+    with open(filename, encoding="UTF-8") as f:
+        print(f.read(), end="")
