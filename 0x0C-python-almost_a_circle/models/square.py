@@ -1,82 +1,49 @@
 #!/usr/bin/python3
-"""Module for Rectangle class."""
-from models.base import Base
+'''Module for Square class.'''
+from models.rectangle import Rectangle
 
 
-class Rectangle(Base):
-    """Rectangle class, inherits from Base."""
+class Square(Rectangle):
+    '''A Square class.'''
 
-    def __init__(self, width, height, x=0, y=0, id=None):
-        """Initialize a new instance of Rectangle.
+    def __init__(self, size, x=0, y=0, id=None):
+        '''Constructor.'''
+        super().__init__(size, size, x, y, id)
 
-        Args:
-            width (int): Width of the rectangle.
-            height (int): Height of the rectangle.
-            x (int): X-coordinate of the rectangle.
-            y (int): Y-coordinate of the rectangle.
-            id (int): ID for the new instance.
-
-        Returns:
-            None
-        """
-        super().__init__(id)
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
+    def __str__(self):
+        '''Returns string info about this square.'''
+        return '[{}] ({}) {}/{} - {}'.\
+            format(type(self).__name__, self.id, self.x, self.y, self.width)
 
     @property
-    def width(self):
-        """Getter method for width."""
-        return self.__width
+    def size(self):
+        '''Size of this square.'''
+        return self.width
 
-    @width.setter
-    def width(self, value):
-        """Setter method for width."""
-        if not isinstance(value, int):
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.__width = value
+    @size.setter
+    def size(self, value):
+        self.width = value
+        self.height = value
 
-    @property
-    def height(self):
-        """Getter method for height."""
-        return self.__height
+    def __update(self, id=None, size=None, x=None, y=None):
+        '''Internal method that updates instance attributes via */**args.'''
+        if id is not None:
+            self.id = id
+        if size is not None:
+            self.size = size
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
-    @height.setter
-    def height(self, value):
-        """Setter method for height."""
-        if not isinstance(value, int):
-            raise TypeError("height must be an integer")
-        if value <= 0:
-            raise ValueError("height must be > 0")
-        self.__height = value
+    def update(self, *args, **kwargs):
+        '''Updates instance attributes via no-keyword & keyword args.'''
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
 
-    @property
-    def x(self):
-        """Getter method for x."""
-        return self.__x
-
-    @x.setter
-    def x(self, value):
-        """Setter method for x."""
-        if not isinstance(value, int):
-            raise TypeError("x must be an integer")
-        if value < 0:
-            raise ValueError("x must be >= 0")
-        self.__x = value
-
-    @property
-    def y(self):
-        """Getter method for y."""
-        return self.__y
-
-    @y.setter
-    def y(self, value):
-        """Setter method for y."""
-        if not isinstance(value, int):
-            raise TypeError("y must be an integer")
-        if value < 0:
-            raise ValueError("y must be >= 0")
-        self.__y = value
+    def to_dictionary(self):
+        '''Returns dictionary representation of this class.'''
+        return {"id": self.id, "size": self.width,
+                "x": self.x, "y": self.y}
