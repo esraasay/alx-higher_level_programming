@@ -1,6 +1,8 @@
 #!/usr/bin/node
-function printArguments(arg1, arg2) {
-    console.log(arg1 + " is " + arg2);
-}
 
-printArguments("apple", "delicious");
+const myVar1 = process.argv[2];
+const myVar2 = process.argv[3];
+
+const result = `${myVar1} is ${myVar2}`;
+
+console.log(result);
